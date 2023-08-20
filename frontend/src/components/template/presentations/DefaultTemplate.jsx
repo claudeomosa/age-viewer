@@ -113,7 +113,7 @@ const DefaultTemplate = ({
       />
       <Row className="content-row">
         <div>
-          <Button onClick={() => setOpen(true)}>
+          <Button onClick={() => setOpen(true)} title="Open query generator">
             <FontAwesomeIcon icon={faBars} />
           </Button>
           <BuilderContainer open={open} setOpen={setOpen} finder={finder} />
