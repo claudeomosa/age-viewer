@@ -70,39 +70,43 @@ const ServerConnectFrame = ({
   });
 
   return (
-    <Frame
-      reqString={reqString}
-      isPinned={isPinned}
-      refKey={refKey}
-    >
+    <Frame reqString={reqString} isPinned={isPinned} refKey={refKey}>
       <Row>
-        <Col span={6}>
+        <Col md={8}>
           <h3>Connect to Database</h3>
           <p>Database access might require an authenticated connection.</p>
         </Col>
-        <Col span={18}>
+        <Col md={10}>
           <div className={styles.FrameWrapper}>
-            <Form
-              initialValues={FormInitialValue}
-              layout="vertical"
-              onFinish={connectToDatabase}
-            >
-              <Form.Item name="host" label="Connect URL" rules={[{ required: true }]}>
-                <Input placeholder="192.168.0.1" />
-              </Form.Item>
-              <Form.Item name="port" label="Connect Port" rules={[{ required: true }]}>
-                <InputNumber placeholder="5432" className={styles.FullWidth} />
-              </Form.Item>
-              <Form.Item name="database" label="Database Name" rules={[{ required: true }]}>
-                <Input placeholder="postgres" />
-              </Form.Item>
-              <Form.Item name="user" label="User Name" rules={[{ required: true }]}>
-                <Input placeholder="postgres" />
-              </Form.Item>
+            <Form initialValues={FormInitialValue} layout="vertical" onFinish={connectToDatabase}>
+              <Row className="mb-3">
+                <Col xs={12} lg={10}>
+                  <Form.Item name="host" label="Connect URL" rules={[{ required: true }]}>
+                    <Input placeholder="192.168.0.1" className="w-100" />
+                  </Form.Item>
+                </Col>
+                <Col xs={12} lg={10}>
+                  <Form.Item name="port" label="Connect Port" rules={[{ required: true }]} className="px-2">
+                    <InputNumber placeholder="5432" className="w-100" />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={12} lg={10}>
+                  <Form.Item name="database" label="Database Name" rules={[{ required: true }]}>
+                    <Input placeholder="postgres" className="w-100" />
+                  </Form.Item>
+                </Col>
+                <Col xs={12} lg={10}>
+                  <Form.Item name="user" label="User Name" rules={[{ required: true }]} className="px-2">
+                    <Input placeholder="postgres" className="w-100" />
+                  </Form.Item>
+                </Col>
+              </Row>
               <Form.Item name="password" label="Password" rules={[{ required: true }]}>
-                <Input.Password placeholder="postgres" />
+                <Input.Password placeholder="postgres" className="w-100" />
               </Form.Item>
-              <Form.Item>
+              <Form.Item className="mt-3">
                 <Button type="primary" htmlType="submit">Connect</Button>
               </Form.Item>
             </Form>
@@ -110,6 +114,7 @@ const ServerConnectFrame = ({
         </Col>
       </Row>
     </Frame>
+
   );
 };
 
