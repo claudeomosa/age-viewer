@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import useBreadcrumb from '../../helpers/useBreadcrumb';
 
 const NoticeAlreadyConnectedBreadcrumb = () => {
-  const [showBreadcrumb, setShowBreadcrumb] = useState(false);
-
-  useEffect(() => {
-    setShowBreadcrumb(true);
-    setTimeout(() => {
-      setShowBreadcrumb(false);
-    }, 5000);
-  }, []);
-
-  const breadcrumbStyle = {
-    position: 'fixed',
-    top: '60px',
-    right: showBreadcrumb ? '10px' : '-500px',
-    transition: 'right 0.3s',
-    zIndex: 1000,
-  };
-
-  const clearAlert = () => {
-    setShowBreadcrumb(false);
-  };
+  const { showBreadcrumb, breadcrumbStyle, clearBreadcrumb } = useBreadcrumb();
 
   return (
     <div style={breadcrumbStyle}>
@@ -31,7 +13,7 @@ const NoticeAlreadyConnectedBreadcrumb = () => {
         <Alert
           variant="info"
           dismissible
-          onClose={clearAlert}
+          onClose={clearBreadcrumb}
         >
           <Alert.Heading>Already Connected to Database</Alert.Heading>
           <p>

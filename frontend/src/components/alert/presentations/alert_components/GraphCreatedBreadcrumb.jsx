@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Alert from 'react-bootstrap/Alert';
+import useBreadcrumb from '../../helpers/useBreadcrumb';
 
 const GraphCreatedBreadcrumb = () => {
-  const [showBreadcrumb, setShowBreadcrumb] = useState(false);
-
-  useEffect(() => {
-    setShowBreadcrumb(true);
-    setTimeout(() => {
-      setShowBreadcrumb(false);
-    }, 5000);
-  }, []);
-
-  const breadcrumbStyle = {
-    position: 'fixed',
-    top: '60px', // Adjust as needed
-    right: showBreadcrumb ? '10px' : '-500px',
-    transition: 'right 0.3s',
-    zIndex: 1000,
-  };
-
-  const clearAlert = () => {
-    setShowBreadcrumb(false);
-  };
+  const { showBreadcrumb, breadcrumbStyle, clearBreadcrumb } = useBreadcrumb();
 
   return (
     <div style={breadcrumbStyle}>
@@ -29,7 +11,7 @@ const GraphCreatedBreadcrumb = () => {
         <Alert
           variant="success"
           dismissible
-          onClose={clearAlert}
+          onClose={clearBreadcrumb}
         >
           <Alert.Heading>Graph Created</Alert.Heading>
           <p>

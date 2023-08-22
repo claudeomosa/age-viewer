@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Alert from 'react-bootstrap/Alert';
+import useBreadcrumb from '../../helpers/useBreadcrumb';
 
 const ErrorPayloadFailBreadcrumb = () => {
-  const [showBreadcrumb, setShowBreadcrumb] = useState(false);
-
-  useEffect(() => {
-    setShowBreadcrumb(true);
-    setTimeout(() => {
-      setShowBreadcrumb(false);
-    }, 5000);
-  }, []);
-
-  const breadcrumbStyle = {
-    position: 'fixed',
-    top: '60px',
-    right: showBreadcrumb ? '10px' : '-500px',
-    transition: 'right 0.3s',
-    zIndex: 1000,
-  };
-
-  const clearAlert = () => {
-    setShowBreadcrumb(false);
-  };
+  const { showBreadcrumb, breadcrumbStyle, clearBreadcrumb } = useBreadcrumb();
 
   const errorMessage = "Your target file 'example.txt' does not exist";
 
@@ -31,7 +13,7 @@ const ErrorPayloadFailBreadcrumb = () => {
         <Alert
           variant="danger"
           dismissible
-          onClose={clearAlert}
+          onClose={clearBreadcrumb}
         >
           <Alert.Heading>Failed to Load Play Target</Alert.Heading>
           <p>
